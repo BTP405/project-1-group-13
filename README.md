@@ -1,6 +1,6 @@
-- **Title:** Movie Watchlist App
+# Movie Watchlist App
 
-## 2. Installation
+## 1. Installation
 
 ### Dependencies
 - Python 3.x
@@ -14,7 +14,7 @@
     ```
 3. Ensure you have MongoDB installed and running on your machine or provide the appropriate MongoDB connection URI.
 
-## 3. Usage
+## 2. Usage
 
 ### Rules
 1. User has to exist to add movie to watch list
@@ -29,7 +29,7 @@
 ### Configuration
 - Edit `database.py` to configure the MongoDB connection URI if necessary.
 
-## 4. Features
+## 3. Features
 
 - Add new movies to the watchlist.
 - View all available movies.
@@ -37,7 +37,7 @@
 - Add and delete users.
 - Search for movies by title.
 
-## 5. Contributing
+## 4. Contributing
 
 ### Guidelines
 - Bug reports, feature requests, and contributions are welcome.
@@ -46,11 +46,11 @@
 ### Code Style
 - Follow PEP 8 guidelines for Python code.
 
-## 6. Credits
+## 5. Credits
 
 ### Authors
 - Nand Patel, Rahman Mohamed, Amitoj Uppal
 
-## 7. License
+## 6. License
 
 - This project is licensed under the MIT License - see the [LICENSE](https://en.wikipedia.org/wiki/MIT_License) file for details.

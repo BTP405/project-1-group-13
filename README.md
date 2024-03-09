@@ -1,35 +1,55 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-24ddc0f5d75046c5622901739e7c5dd533143b0c8e959d652212380cedb1ea36.svg)](https://classroom.github.com/a/545oUMxH)
-
-### Please use the following template to add a ReadMe for your repo.
-
 ## 1. Project Title and Description
-    - Title: Provide a clear and concise title for your project.
-    - Description: Give a brief overview of what your project does and its purpose.
-## 2. Installation
-    - Dependencies: List any dependencies or prerequisites required to use your project.
-    - Installation Instructions: Provide step-by-step instructions on how to install and set up your project.
-## 3. Usage
-    - Examples: Include examples or code snippets to demonstrate how to use your project.
-    - Configuration: Explain any configuration options or settings users might need to know about.
-## 4. Features
-    - List of Features: Outline the main features and functionalities of your project.
-## 5. Contributing
-    - Guidelines: Explain how others can contribute to your project, including information on submitting bug reports, feature requests, or code contributions.
-    - Code Style: If applicable, provide guidelines or references to your code style.
-## 6. Credits
-    - Authors: List the authors or contributors of the project.
-    - Acknowledgments: Mention any individuals or resources that helped inspire or support your project.
-## 7. License
-    - License Information: Specify the license under which your project is distributed.
-## 8. Additional Sections (Optional)
-    - FAQ: Include frequently asked questions and their answers.
-    - Troubleshooting: Provide solutions to common issues or troubleshooting tips.
-    - Roadmap: Outline the future development plans for your project.
-    - Changelog: Document changes and updates to your project over time.
 
-## Markdown Formatting Tips
-  - Use headings (#, ##, ###, etc.) to structure your document.
-  - Utilize lists (- or 1.) for easy-to-read information.
-  - Include links to relevant resources or documentation.
-  - Add code blocks using triple backticks (```) for code snippets.
-  - Use images or diagrams to enhance understanding where applicable.
+- **Title:** Movie Watchlist App
+- **Description:** This project is a movie watchlist application that allows users to add, view, and manage movies they want to watch, as well as mark movies as watched. It also provides functionalities for user management, including adding and deleting users.
+
+## 2. Installation
+
+### Dependencies
+- Python 3.x
+- pymongo (Python MongoDB driver)
+
+### Installation Instructions
+1. Clone the repository to your local machine.
+2. Install the required dependencies using pip:
+    ```
+    pip install pymongo
+    ```
+3. Ensure you have MongoDB installed and running on your machine or provide the appropriate MongoDB connection URI.
+
+## 3. Usage
+
+### Examples
+- To run the application, execute `app.py` using Python:
+    ```
+    python app.py
+    ```
+
+### Configuration
+- Edit `database.py` to configure the MongoDB connection URI if necessary.
+
+## 4. Features
+
+- Add new movies to the watchlist.
+- View all available movies.
+- Mark movies as watched and manage watched movies.
+- Add and delete users.
+- Search for movies by title.
+
+## 5. Contributing
+
+### Guidelines
+- Bug reports, feature requests, and contributions are welcome.
+- Please submit any bugs or feature requests through the issue tracker.
+
+### Code Style
+- Follow PEP 8 guidelines for Python code.
+
+## 6. Credits
+
+### Authors
+- Nand Patel, Rahman Mohamed, Amitoj Uppal
+
+## 7. License
+
+- This project is licensed under the MIT License - see the [LICENSE](https://en.wikipedia.org/wiki/MIT_License) file for details.

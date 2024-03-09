@@ -19,6 +19,10 @@
 
 ## 3. Usage
 
+### Rules
+1. User has to exist to add movie to watch list
+2. To add movie to watchlist, movie should exist in movies collection
+   
 ### Examples
 - To run the application, execute `app.py` using Python:
     ```

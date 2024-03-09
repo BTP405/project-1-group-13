@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Contact</title>
+</head>
+<body>
+    <h1>Add Contact</h1> 
+
+    <form method="post" action="{% url 'add' %}">
+        <h2>Contact Information</h2>
+        {% csrf_token %}
+
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="fname" required>
+        <br/>
+        <br/>
+
+        <label for="lname">Last Name</label>
+        <input type="text" id="lname" name="lname">
+        <br/>
+        <br/>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email">
+        <br/>
+        <br/>
+
+        <label for="notes">Notes</label>
+        <input type="text" id="notes" name="notes">
+        <br/>
+        <br/>
+
+        <label for="address">Address</label>
+        <input type="text" id="address" name="address">
+        <br/>
+        <br/>
+
+        <label for="birthday">Birthday (yyyy-mm-dd)</label>
+        <input type="date" id="birthday" name="birthday">
+        <br/>
+        <br/>
+
+        <h2>Contact Phone Number(s)</h2>
+        
+        <label for="work">Work</label>
+        <input type="text" id="work" name="work">
+        <br/>
+        <br/>
+
+        <label for="school">School</label>
+        <input type="text" id="school" name="school">
+        <br/>
+        <br/>
+
+        <label for="home">Home</label>
+        <input type="text" id="home" name="home">
+        <br/>
+        <br/>
+
+        <label for="mobile">Mobile</label>
+        <input type="text" id="mobile" name="mobile">
+        <br/>
+        <br/>
+
+        <label for="otherPhone">Other</label>
+        <input type="text" id="otherPhone" name="otherPhone">
+        <br/>
+        <br/>
+
+        <h2>Contact Socials</h2>
+        
+        <label for="instagram">Instagram</label>
+        <input type="text" id="instagram" name="instagram">
+        <br/>
+        <br/>
+
+        <label for="twitter">Twitter</label>
+        <input type="text" id="twitter" name="twitter">
+        <br/>
+        <br/>
+
+        <label for="facebook">Facebook</label>
+        <input type="text" id="facebook" name="facebook">
+        <br/>
+        <br/>
+
+        <label for="discord">Discord</label>
+        <input type="text" id="discord" name="discord">
+        <br/>
+        <br/>
+
+        <label for="otherSocial">Other</label>
+        <input type="text" id="otherSocial" name="otherSocial">
+        <br/>
+        <br/>
+
+        <button type="submit">Add Contact</button>
+    </form>
+    <a href={%url 'home'%}><button>Go Home</button></a>
+</body>
+</html>

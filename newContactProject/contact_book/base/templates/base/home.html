@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Book Home</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Contacts</h1>
+        <ul>
+            {% for row in data.1 %}
+                <li><a href="{% url 'person' pk=row.contact_id %}">{{ row.fname }} {{ row.lname }}</a></li>
+            {% endfor %}
+        </ul>
+        <!-- Add contact button -->
+        <a href="{% url 'add' %}" class="btn btn-primary">Add Contact</a>
+    </div>
+</body>
+</html>

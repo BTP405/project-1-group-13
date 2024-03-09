@@ -1,7 +1,4 @@
-## 1. Project Title and Description
-
 - **Title:** Movie Watchlist App
-- **Description:** This project is a movie watchlist application that allows users to add, view, and manage movies they want to watch, as well as mark movies as watched. It also provides functionalities for user management, including adding and deleting users.
 
 ## 2. Installation
 

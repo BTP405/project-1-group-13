@@ -1,125 +1,128 @@
 import database
-import datetime
-
-def prompt_add_movie():
-    title = input("Movie title: ")
-    release_date = input("Release date (dd-mm-YYYY): ")
-
-    try:
-        parsed_date = datetime.datetime.strptime(release_date, "%d-%m-%Y")
-        timestamp = parsed_date.timestamp()
-        database.add_movie(title, timestamp)
-
-    except ValueError:
-        print("Invalid date format. Please enter the date in dd-mm-YYYY format.")
-
-    print("\n")
-
-
-def prompt_watch_movie():
-    username = input("Username: ")
-    movie_name = input("Enter movie name you've watched: ")
-    database.watch_movie(username, movie_name)
-    
-    print("\n")
-
-def prompt_remove_watched_movie():
-    username = input("Username: ")
-    watched_movie = input("Enter the movie name you want to remove from watched list: ")
-    database.unwatch_movie(username, watched_movie)
-    print("\n")
-
-
-def print_movie_list(movies):
-    if not movies:
-        print(f"No movie found.\n")
-        return
-
-    for movie in movies:
-        movie_date = datetime.datetime.fromtimestamp(movie["release_timestamp"])
-        human_date = movie_date.strftime("%d %b %Y")
-        print(f"{movie['title']} ({human_date})")
-    
-    print("\n")
-
-def prompt_show_watched_movies():
-    username = input("Username: ")
-    movies = database.get_watched_movies(username)
-    print_movie_list(movies)
-    print("\n")
-
-
-def prompt_search_movies():
-    search_term = input("Enter movie title: ")
-    movies = database.search_movies(search_term)
-    return movies
-
 
 def prompt_add_user():
-    username = input("Username: ")
+    username = input("Enter username: ")
     database.add_user(username)
 
 def prompt_delete_user():
-    username = input("Username: ")
-    database.delete_user(username)        
-    print("\n")
+    username = input("Enter username to delete: ")
+    database.delete_user(username)
 
-
-def prompt_all_users():
+def prompt_view_all_users():
     users = database.all_users()
-
-    if isinstance(users, str) and users == "no user":
-        print("No users found.")
-    else:
-        print("---All users in database---")
+    if users:
+        print("All users:")
         for user in users:
-            print(user["username"])
-    
-    print("\n")
-
-
-menu = """Please select one of the following options:
-0) Exit.
-1) Add new movie.
-2) View all movies.
-3) Add watched movie.
-4) View watched movies.
-5) Remove watched movie.
-6) Add new user.
-7) Delete a user.
-8) View all users.
-9) Search for a movie.
-
-Your selection: """
-welcome = "Welcome to the watchlist app!"
-
-
-print(welcome)
-
-while (user_input := input(menu)) != "0":
-    if user_input == "1":
-        prompt_add_movie()
-    elif user_input == "2":
-        movies = database.get_movies(upcoming=False)
-        print_movie_list(movies)
-    elif user_input == "3":
-        prompt_watch_movie()
-    elif user_input == "4":
-        prompt_show_watched_movies()
-        print("\n")
-    elif user_input == "5":
-        prompt_remove_watched_movie()
-    elif user_input == "6":
-        prompt_add_user()
-    elif user_input == "7":
-        prompt_delete_user()
-    elif user_input == "8":
-        prompt_all_users()
-    elif user_input == "9":
-        movies = prompt_search_movies()
-        if movies:
-            print_movie_list(movies)
-        else:
-            print("Found no movies for that search term!\n")
+            print(user[1])  # Assuming username is the second column in the database
     else:
-        print("Invalid input, please try again!\n")
+        print("No users found.")
+
+def prompt_search_movies():
+    search_term = input("Enter movie title to search: ")
+    movies = database.search_movies_api(search_term)
+    if movies:
+        print("Search results:")
+        for movie in movies:
+            print(f"{movie['title']} ({movie['release_date']})")
+    else:
+        print("No movies found.")
+
+def prompt_add_movie_to_watchlist():
+    username = input("Enter username: ")
+    
+    # Check if the user exists
+    if not database.user_exists(username):
+        print(f"User '{username}' does not exist. Cannot add movie to watchlist.")
+        return
+
+    movie_name = input("Enter movie name to add to watchlist: ")
+    database.add_movie_to_watchlist(username, movie_name)
+
+def prompt_remove_movie_from_watchlist():
+    username = input("Enter username: ")
+    
+    # Check if the user exists
+    if not database.user_exists(username):
+        print(f"User '{username}' does not exist.")
+        return
+
+    movie_name = input("Enter movie name to remove from watchlist: ")
+    
+    # Check if the movie exists in the user's watchlist
+    if not database.movie_exists_in_watchlist(username, movie_name):
+        print(f"Movie '{movie_name}' is not in the watchlist.")
+        return
+
+    database.remove_movie_from_watchlist(username, movie_name)
+
+def prompt_view_watchlist():
+    username = input("Enter username to view watchlist: ")
+    
+    # Check if the user exists
+    if not database.user_exists(username):
+        print(f"User '{username}' does not exist. Cannot view watchlist.")
+        return
+
+    watchlist = database.get_watchlist(username)
+    if watchlist:
+        print(f"Watchlist for user '{username}':")
+        for movie in watchlist:
+            print(movie[0])  # Movie name is at index 0
+    else:
+        print(f"No movies found in watchlist for user '{username}'.")
+
+def prompt_view_movie_details():
+    search_term = input("Enter movie title to view details: ")
+    movie_details = database.search_movies_api(search_term)
+    if movie_details:
+        movie = movie_details[0]  # Assuming we only show details for the first movie found
+        print("Movie Details:")
+        print(f"Title: {movie['original_title']}")
+        print(f"Release Date: {movie['release_date']}")
+        print(f"Adult-rated: {movie['adult']}")
+        print(f"Rating: {movie['vote_average']}")
+        print(f"Overview: {movie['overview']}")
+    
+    else:
+        print("Movie not found.")
+
+menu = """
+Please select one of the following options:
+1) Add new user
+2) Delete a user
+3) View all users
+4) Search for a movie
+5) View movie details
+6) Add movie to watchlist
+7) View watchlist
+8) Remove movie from watchlist
+0) Exit
+"""
+
+print("Welcome to the movie watchlist app!")
+
+while True:
+    print(menu)
+    choice = input("Enter your choice: ")
+    
+    if choice == '1':
+        prompt_add_user()
+    elif choice == '2':
+        prompt_delete_user()
+    elif choice == '3':
+        prompt_view_all_users()
+    elif choice == '4':
+        prompt_search_movies()
+    elif choice == '5':
+        prompt_view_movie_details()
+    elif choice == '6':
+        prompt_add_movie_to_watchlist()
+    elif choice == '7':
+        prompt_view_watchlist()
+    elif choice == '8':
+        prompt_remove_movie_from_watchlist()
+    elif choice == '0':
+        print("Exiting...")
+        break
+    else:
+        print("Invalid choice. Please try again.")
